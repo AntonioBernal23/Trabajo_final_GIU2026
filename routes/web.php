@@ -2,17 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'Home');
+Route::view('/', 'dashboard')->name('dashboard');
 
-Route::view('/nosotros', 'Nosotros');
+Route::view('/inventario', 'inventario')->name('inventario.index');
+Route::view('/inventario/vencimientos', 'vencimientos')->name('vencimientos.index');
+Route::view('/almacen', 'almacen')->name('almacen.index');
 
-Route::view('/servicios', 'Servicios');
+Route::view('/donaciones/nueva', 'donaciones')->name('donaciones.create');
+Route::view('/donantes', 'donantes')->name('donantes.index');
 
-Route::view('/detalle/servicio/1', 'DetalleServicio1');
-Route::view('/detalle/servicio/2', 'DetalleServicio2');
-Route::view('/detalle/servicio/3', 'DetalleServicio3');
+Route::view('/despachos', 'despachos')->name('despachos.index');
+Route::view('/comedores', 'comedores')->name('comedores.index');
+Route::view('/reportes', 'reportes')->name('reportes.index');
 
-// Rutas de Oswaldo Maldonado
-Route::view('/despachos', 'despachos');
-Route::view('/donantes', 'donantes');
-Route::view('/comedores', 'comedores');
+Route::view('/perfil', 'perfil')->name('perfil.edit');
