@@ -11,3 +11,8 @@ Route::view('/servicios', 'Servicios');
 Route::view('/detalle/servicio/1', 'DetalleServicio1');
 Route::view('/detalle/servicio/2', 'DetalleServicio2');
 Route::view('/detalle/servicio/3', 'DetalleServicio3');
+
+// Rutas de Oswaldo Maldonado
+Route::view('/despachos', 'despachos');
+Route::view('/donantes', 'donantes');
+Route::view('/comedores', 'comedores');
