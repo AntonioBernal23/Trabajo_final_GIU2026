@@ -1,232 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    .contenido {
-        flex: 1;
-        padding: 45px 25px;
-        background: linear-gradient(135deg, #f3e9ff, #fff0f7 35%, #eafcff 70%, #dffff9);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* FILAS ALINEADAS EN DOS COLUMNAS */
-    .fila {
-        width: 100%;
-        max-width: 850px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 25px;
-        margin-bottom: 25px;
-    }
-
-    .etiqueta-col {
-        width: 220px;
-        flex-shrink: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    .valor-col {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        position: relative;
-    }
-
-    .etiqueta-cyan {
-        background-color: #35c9ed;
-        border-radius: 30px;
-        padding: 9px 15px;
-        width: 200px;
-        text-align: center;
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    .select-comedor,
-    .select-fecha {
-        width: 300px;
-        max-width: 100%;
-        border: none;
-        background-color: transparent;
-        font-size: 17px;
-        font-weight: bold;
-        padding: 7px;
-        cursor: pointer;
-    }
-
-    /* BOTÓN Y MENÚ DE PRODUCTOS */
-    .boton-productos {
-        background-color: #35c9ed;
-        border: none;
-        border-radius: 25px;
-        padding: 10px 28px;
-        font-size: 13px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .boton-productos:hover {
-        background-color: #22b9df;
-    }
-
-    .menu-productos {
-        display: none;
-        position: absolute;
-        top: 45px;
-        left: 0;
-        width: 280px;
-        background-color: white;
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        z-index: 100;
-    }
-
-    .menu-productos.mostrar {
-        display: block;
-    }
-
-    .producto {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 12px;
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .producto:last-child {
-        margin-bottom: 0;
-    }
-
-    .producto-nombre {
-        display: flex;
-        align-items: center;
-    }
-
-    .producto-nombre input {
-        margin-right: 8px;
-        width: 16px;
-        height: 16px;
-        cursor: pointer;
-    }
-
-    .producto-nombre label {
-        cursor: pointer;
-    }
-
-    .cantidad {
-        width: 75px;
-        border: 1px solid #aaa;
-        border-radius: 6px;
-        padding: 4px;
-        font-weight: bold;
-        display: none;
-    }
-
-    .cantidad.mostrar {
-        display: block;
-    }
-
-    /* RESUMEN */
-    .etiqueta-resumen {
-        background: linear-gradient(90deg, #009fc2, #75d34b);
-        border-radius: 25px;
-        width: 180px;
-        min-height: 55px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .resumen-texto {
-        max-width: 450px;
-        font-size: 16px;
-        font-weight: bold;
-        overflow-wrap: anywhere;
-    }
-
-    /* TOTAL */
-    .etiqueta-despacho {
-        background-color: #64cf54;
-        border-radius: 25px;
-        padding: 9px 12px;
-        width: 180px;
-        text-align: center;
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    .total {
-        font-size: 16px;
-        font-weight: bold;
-        overflow-wrap: anywhere;
-    }
-
-    /* BOTÓN CONFIRMAR */
-    .boton-confirmar {
-        display: block;
-        margin: 30px auto 10px;
-        background-color: #70d34f;
-        color: #000;
-        border: none;
-        border-radius: 30px;
-        padding: 12px 35px;
-        font-size: 15px;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .boton-confirmar:hover {
-        background-color: #5fc340;
-    }
-
-    /* RESPONSIVO */
-    @media (max-width: 768px) {
-        .contenido {
-            padding: 30px 15px;
-        }
-
-        .fila {
-            flex-direction: column;
-            gap: 10px;
-            text-align: center;
-        }
-
-        .etiqueta-col, .valor-col {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .select-comedor, .select-fecha {
-            text-align: center;
-        }
-
-        .menu-productos {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    }
-</style>
-
-<main class="contenido">
+<main class="flex-1 py-[45px] px-[25px] bg-[linear-gradient(135deg,#f3e9ff,#fff0f7_35%,#eafcff_70%,#dffff9)] flex flex-col items-center max-md:py-[30px] max-md:px-[15px]">
 
     <!-- Fila 1 -->
-    <div class="fila">
-        <div class="etiqueta-col">
-            <div class="etiqueta-cyan">COMEDOR BENEFICIADO:</div>
+    <div class="w-full max-w-[850px] flex items-center justify-start gap-[25px] mb-[25px] max-md:flex-col max-md:gap-2.5 max-md:text-center">
+        <div class="w-[220px] shrink-0 flex justify-center max-md:w-full">
+            <div class="bg-[#35c9ed] rounded-[30px] py-[9px] px-[15px] w-[200px] text-center text-[12px] font-bold">COMEDOR BENEFICIADO:</div>
         </div>
-        <div class="valor-col">
-            <select class="select-comedor" id="comedor">
+        <div class="flex-1 flex items-center justify-start relative max-md:w-full max-md:justify-center">
+            <select class="w-[300px] max-w-full border-none bg-transparent text-[17px] font-bold p-[7px] cursor-pointer max-md:text-center" id="comedor">
                 <option value="Comedor San José">Comedor San José</option>
                 <option value="Comedor Esperanza">Comedor Esperanza</option>
                 <option value="Comedor Santa María">Comedor Santa María</option>
@@ -235,63 +18,63 @@
     </div>
 
     <!-- Fila 2 -->
-    <div class="fila">
-        <div class="etiqueta-col">
-            <div class="etiqueta-cyan">FECHA DE DESPACHO</div>
+    <div class="w-full max-w-[850px] flex items-center justify-start gap-[25px] mb-[25px] max-md:flex-col max-md:gap-2.5 max-md:text-center">
+        <div class="w-[220px] shrink-0 flex justify-center max-md:w-full">
+            <div class="bg-[#35c9ed] rounded-[30px] py-[9px] px-[15px] w-[200px] text-center text-[12px] font-bold">FECHA DE DESPACHO</div>
         </div>
-        <div class="valor-col">
-            <input type="date" id="fecha" class="select-fecha">
+        <div class="flex-1 flex items-center justify-start relative max-md:w-full max-md:justify-center">
+            <input type="date" id="fecha" class="w-[300px] max-w-full border-none bg-transparent text-[17px] font-bold p-[7px] cursor-pointer max-md:text-center">
         </div>
     </div>
 
     <!-- Fila 3: Selección de productos alineada a la derecha -->
-    <div class="fila">
-        <div class="etiqueta-col"></div>
-        <div class="valor-col">
+    <div class="w-full max-w-[850px] flex items-center justify-start gap-[25px] mb-[25px] max-md:flex-col max-md:gap-2.5 max-md:text-center">
+        <div class="w-[220px] shrink-0 flex justify-center max-md:w-full"></div>
+        <div class="flex-1 flex items-center justify-start relative max-md:w-full max-md:justify-center">
             <div class="dropdown-productos">
-                <button type="button" class="boton-productos" onclick="abrirProductos()">
+                <button type="button" class="bg-[#35c9ed] border-none rounded-[25px] py-2.5 px-7 text-[13px] font-bold cursor-pointer hover:bg-[#22b9df]" onclick="abrirProductos()">
                     SELECCIONAR PRODUCTOS ▼
                 </button>
 
-                <div class="menu-productos" id="menuProductos">
-                    <div class="producto">
-                        <div class="producto-nombre">
-                            <input type="checkbox" id="arrozCheck" onchange="mostrarCantidad('arroz')">
-                            <label for="arrozCheck">Arroz</label>
+                <div class="hidden [&.mostrar]:block absolute top-[45px] left-0 w-[280px] bg-white rounded-[10px] p-[15px] shadow-[0_4px_15px_rgba(0,0,0,0.2)] z-[100] max-md:left-1/2 max-md:-translate-x-1/2" id="menuProductos">
+                    <div class="producto flex items-center justify-between gap-3 mb-3 text-[14px] font-bold last:mb-0">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="arrozCheck" class="mr-2 w-4 h-4 cursor-pointer" onchange="mostrarCantidad('arroz')">
+                            <label for="arrozCheck" class="cursor-pointer">Arroz</label>
                         </div>
-                        <input type="number" id="arrozCantidad" class="cantidad" min="1" max="100" value="1" oninput="validarCantidad(this)">
+                        <input type="number" id="arrozCantidad" class="hidden [&.mostrar]:block w-[75px] border border-[#aaa] rounded-md p-1 font-bold" min="1" max="100" value="1" oninput="validarCantidad(this)">
                     </div>
 
-                    <div class="producto">
-                        <div class="producto-nombre">
-                            <input type="checkbox" id="frijolCheck" onchange="mostrarCantidad('frijol')">
-                            <label for="frijolCheck">Frijol</label>
+                    <div class="producto flex items-center justify-between gap-3 mb-3 text-[14px] font-bold last:mb-0">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="frijolCheck" class="mr-2 w-4 h-4 cursor-pointer" onchange="mostrarCantidad('frijol')">
+                            <label for="frijolCheck" class="cursor-pointer">Frijol</label>
                         </div>
-                        <input type="number" id="frijolCantidad" class="cantidad" min="1" max="100" value="1" oninput="validarCantidad(this)">
+                        <input type="number" id="frijolCantidad" class="hidden [&.mostrar]:block w-[75px] border border-[#aaa] rounded-md p-1 font-bold" min="1" max="100" value="1" oninput="validarCantidad(this)">
                     </div>
 
-                    <div class="producto">
-                        <div class="producto-nombre">
-                            <input type="checkbox" id="aceiteCheck" onchange="mostrarCantidad('aceite')">
-                            <label for="aceiteCheck">Aceite</label>
+                    <div class="producto flex items-center justify-between gap-3 mb-3 text-[14px] font-bold last:mb-0">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="aceiteCheck" class="mr-2 w-4 h-4 cursor-pointer" onchange="mostrarCantidad('aceite')">
+                            <label for="aceiteCheck" class="cursor-pointer">Aceite</label>
                         </div>
-                        <input type="number" id="aceiteCantidad" class="cantidad" min="1" max="100" value="1" oninput="validarCantidad(this)">
+                        <input type="number" id="aceiteCantidad" class="hidden [&.mostrar]:block w-[75px] border border-[#aaa] rounded-md p-1 font-bold" min="1" max="100" value="1" oninput="validarCantidad(this)">
                     </div>
 
-                    <div class="producto">
-                        <div class="producto-nombre">
-                            <input type="checkbox" id="lentejasCheck" onchange="mostrarCantidad('lentejas')">
-                            <label for="lentejasCheck">Lentejas</label>
+                    <div class="producto flex items-center justify-between gap-3 mb-3 text-[14px] font-bold last:mb-0">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="lentejasCheck" class="mr-2 w-4 h-4 cursor-pointer" onchange="mostrarCantidad('lentejas')">
+                            <label for="lentejasCheck" class="cursor-pointer">Lentejas</label>
                         </div>
-                        <input type="number" id="lentejasCantidad" class="cantidad" min="1" max="100" value="1" oninput="validarCantidad(this)">
+                        <input type="number" id="lentejasCantidad" class="hidden [&.mostrar]:block w-[75px] border border-[#aaa] rounded-md p-1 font-bold" min="1" max="100" value="1" oninput="validarCantidad(this)">
                     </div>
 
-                    <div class="producto">
-                        <div class="producto-nombre">
-                            <input type="checkbox" id="azucarCheck" onchange="mostrarCantidad('azucar')">
-                            <label for="azucarCheck">Azúcar</label>
+                    <div class="producto flex items-center justify-between gap-3 mb-3 text-[14px] font-bold last:mb-0">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="azucarCheck" class="mr-2 w-4 h-4 cursor-pointer" onchange="mostrarCantidad('azucar')">
+                            <label for="azucarCheck" class="cursor-pointer">Azúcar</label>
                         </div>
-                        <input type="number" id="azucarCantidad" class="cantidad" min="1" max="100" value="1" oninput="validarCantidad(this)">
+                        <input type="number" id="azucarCantidad" class="hidden [&.mostrar]:block w-[75px] border border-[#aaa] rounded-md p-1 font-bold" min="1" max="100" value="1" oninput="validarCantidad(this)">
                     </div>
                 </div>
             </div>
@@ -299,26 +82,26 @@
     </div>
 
     <!-- Fila 4 -->
-    <div class="fila">
-        <div class="etiqueta-col">
-            <div class="etiqueta-resumen">RESUMEN DE<br>ENTREGA</div>
+    <div class="w-full max-w-[850px] flex items-center justify-start gap-[25px] mb-[25px] max-md:flex-col max-md:gap-2.5 max-md:text-center">
+        <div class="w-[220px] shrink-0 flex justify-center max-md:w-full">
+            <div class="bg-[linear-gradient(90deg,#009fc2,#75d34b)] rounded-[25px] w-[180px] min-h-[55px] flex items-center justify-center text-center text-[14px] font-bold">RESUMEN DE<br>ENTREGA</div>
         </div>
-        <div class="valor-col">
-            <div class="resumen-texto" id="resumen">No hay productos seleccionados</div>
+        <div class="flex-1 flex items-center justify-start relative max-md:w-full max-md:justify-center">
+            <div class="max-w-[450px] text-[16px] font-bold [overflow-wrap:anywhere]" id="resumen">No hay productos seleccionados</div>
         </div>
     </div>
 
     <!-- Fila 5 -->
-    <div class="fila">
-        <div class="etiqueta-col">
-            <div class="etiqueta-despacho">CAJA DE DESPACHO:</div>
+    <div class="w-full max-w-[850px] flex items-center justify-start gap-[25px] mb-[25px] max-md:flex-col max-md:gap-2.5 max-md:text-center">
+        <div class="w-[220px] shrink-0 flex justify-center max-md:w-full">
+            <div class="bg-[#64cf54] rounded-[25px] py-[9px] px-3 w-[180px] text-center text-[12px] font-bold">CAJA DE DESPACHO:</div>
         </div>
-        <div class="valor-col">
-            <div class="total" id="pesoTotal">[ TOTAL A DESPACHAR: 0 KG ]</div>
+        <div class="flex-1 flex items-center justify-start relative max-md:w-full max-md:justify-center">
+            <div class="text-[16px] font-bold [overflow-wrap:anywhere]" id="pesoTotal">[ TOTAL A DESPACHAR: 0 KG ]</div>
         </div>
     </div>
 
-    <button class="boton-confirmar" onclick="confirmarDespacho()">
+    <button class="block mx-auto mt-[30px] mb-2.5 bg-[#70d34f] text-black border-none rounded-[30px] py-3 px-[35px] text-[15px] font-bold cursor-pointer hover:bg-[#5fc340]" onclick="confirmarDespacho()">
         CONFIRMAR Y GENERAR GUIA
     </button>
 

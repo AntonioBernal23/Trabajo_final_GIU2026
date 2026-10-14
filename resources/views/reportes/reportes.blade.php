@@ -1,121 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    .contenido-reportes {
-        flex: 1;
-        width: 100%;
-        min-height: calc(100vh - 120px);
-        padding: 40px 50px;
-        background: linear-gradient(135deg, #f3e9ff, #fff0f7 35%, #eafcff 70%, #dffff9);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .header-acciones {
-        width: 100%;
-        max-width: 1200px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 35px;
-    }
-
-    .pildora-filtro {
-        background-color: #ccd2da;
-        border-radius: 30px;
-        padding: 10px 25px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: bold;
-        font-size: 15px;
-        color: #000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    }
-
-    .select-filtro {
-        border: none;
-        background: transparent;
-        font-weight: bold;
-        font-size: 15px;
-        cursor: pointer;
-        outline: none;
-    }
-
-    .boton-pdf {
-        background-color: #ccd2da;
-        border: none;
-        border-radius: 30px;
-        padding: 12px 30px;
-        font-weight: bold;
-        font-size: 14px;
-        color: #000;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    }
-
-    .boton-pdf:hover {
-        background-color: #b8c0cb;
-    }
-
-    .grid-graficas {
-        width: 100%;
-        max-width: 1200px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 40px;
-    }
-
-    .col-grafica {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 380px;
-    }
-
-    @media (max-width: 992px) {
-        .header-acciones {
-            flex-direction: column;
-            gap: 15px;
-        }
-        .grid-graficas {
-            flex-direction: column;
-        }
-    }
-</style>
-
-<div class="contenido-reportes">
-    <div class="header-acciones">
-        <div class="pildora-filtro">
+<div class="contenido-reportes flex-1 w-full min-h-[calc(100vh-120px)] py-10 px-[50px] bg-[linear-gradient(135deg,#f3e9ff,#fff0f7_35%,#eafcff_70%,#dffff9)] flex flex-col items-center">
+    <div class="w-full max-w-[1200px] flex justify-between items-center mb-[35px] max-[992px]:flex-col max-[992px]:gap-[15px]">
+        <div class="bg-[#ccd2da] rounded-[30px] py-2.5 px-[25px] flex items-center gap-2 font-bold text-[15px] text-black shadow-[0_2px_5px_rgba(0,0,0,0.05)]">
             <span>FILTRO:</span>
-            <select id="selectFiltro" class="select-filtro">
+            <select id="selectFiltro" class="border-none bg-transparent font-bold text-[15px] cursor-pointer outline-none">
                 <option value="mes">[ ULTIMO MES ]</option>
                 <option value="trimestre">[ ULTIMO TRIMESTRE ]</option>
                 <option value="anio">[ ULTIMO AÑO ]</option>
             </select>
         </div>
 
-        <button class="boton-pdf" onclick="window.print()">
+        <button class="bg-[#ccd2da] border-none rounded-[30px] py-3 px-[30px] font-bold text-[14px] text-black cursor-pointer transition-colors duration-200 shadow-[0_2px_5px_rgba(0,0,0,0.05)] hover:bg-[#b8c0cb]" onclick="window.print()">
             [ EXPORTAR A PDF ]
         </button>
     </div>
 
-    <div class="grid-graficas">
+    <div class="w-full max-w-[1200px] flex flex-row justify-between items-center gap-10 max-[992px]:flex-col">
 
-    <div class="col-grafica">
-            <div style="width: 100%; height: 380px;">
+    <div class="flex-1 flex justify-center items-center min-h-[380px]">
+            <div class="w-full h-[380px]">
                 <canvas id="chartBarras"></canvas>
             </div>
         </div>
 
-        <div class="col-grafica">
-            <div style="width: 100%; height: 350px;">
+        <div class="flex-1 flex justify-center items-center min-h-[380px]">
+            <div class="w-full h-[350px]">
                 <canvas id="chartPastel"></canvas>
             </div>
         </div>

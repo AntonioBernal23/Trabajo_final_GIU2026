@@ -2,338 +2,45 @@
 
 @section('content')
 <style>
-    .contenido-comedores {
-        flex: 1;
-        padding: 40px 20px;
-        background: linear-gradient(135deg, #f3e9ff, #fff0f7 35%, #eafcff 70%, #dffff9);
-        min-height: 85vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .contenedor-principal {
-        width: 100%;
-        max-width: 950px;
-    }
-
-    /* CABECERA CON BOTONES Y PÍLDORA DE TÍTULO */
-    .cabecera-comedores {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 25px;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .pill-titulo {
-        background-color: #cbd5e1;
-        color: #1e293b;
-        font-weight: 800;
-        font-size: 13px;
-        padding: 10px 25px;
-        border-radius: 30px;
-        letter-spacing: 0.5px;
-    }
-
-    .btn-registro {
-        background-color: #35c9ed;
-        color: #000;
-        font-weight: 800;
-        font-size: 13px;
-        padding: 10px 25px;
-        border-radius: 30px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-    }
-
-    .btn-registro:hover {
-        background-color: #22b9df;
-    }
-
-    /* TARJETAS DE INDICADORES / ESTADÍSTICAS */
-    .grid-stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        margin-bottom: 25px;
-    }
-
-    .card-stat {
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 15px;
-        padding: 15px;
-        text-align: center;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-    }
-
-    .card-stat h6 {
-        font-size: 11px;
-        font-weight: 800;
-        color: #64748b;
-        margin-bottom: 5px;
-        text-transform: uppercase;
-    }
-
-    .card-stat p {
-        font-size: 20px;
-        font-weight: 800;
-        color: #0f172a;
-        margin: 0;
-    }
-
-    /* BARRA DE FILTROS Y BÚSQUEDA */
-    .barra-herramientas {
-        display: flex;
-        justify-content: space-between;
-        gap: 15px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-    }
-
-    .input-busqueda {
-        flex: 1;
-        min-width: 250px;
-        padding: 10px 18px;
-        border-radius: 25px;
-        border: 1px solid #cbd5e1;
-        font-size: 13px;
-        outline: none;
-        background: #ffffff;
-    }
-
-    .input-busqueda:focus {
-        border-color: #35c9ed;
-    }
-
-    .select-filtro {
-        padding: 10px 18px;
-        border-radius: 25px;
-        border: 1px solid #cbd5e1;
-        font-size: 13px;
-        outline: none;
-        background: #ffffff;
-        font-weight: 700;
-        cursor: pointer;
-    }
-
-    /* FORMULARIO DE REGISTRO DESPLEGABLE */
-    .contenedor-formulario-oculto {
-        display: none;
-        background: #ffffff;
-        border-radius: 20px;
-        padding: 25px;
-        margin-bottom: 25px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        border: 2px solid #35c9ed;
-        animation: fadeIn 0.3s ease-in-out;
-    }
-
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(-10px); }
         to { opacity: 1; transform: translateY(0); }
     }
-
-    .titulo-form {
-        font-size: 15px;
-        font-weight: 800;
-        color: #1e293b;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        border-bottom: 2px solid #e2e8f0;
-        padding-bottom: 8px;
-    }
-
-    .grid-form {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-
-    .campo-grupo {
-        margin-bottom: 10px;
-    }
-
-    .campo-grupo label {
-        display: block;
-        font-size: 11px;
-        font-weight: 800;
-        color: #334155;
-        margin-bottom: 5px;
-    }
-
-    .campo-grupo input, .campo-grupo select {
-        width: 100%;
-        padding: 9px 12px;
-        border-radius: 10px;
-        border: 1px solid #cbd5e1;
-        font-size: 13px;
-        outline: none;
-    }
-
-    .acciones-form {
-        display: flex;
-        justify-content: flex-end;
-        gap: 10px;
-        margin-top: 15px;
-    }
-
-    .btn-cancelar {
-        background-color: #94a3b8;
-        color: #fff;
-        border: none;
-        padding: 8px 20px;
-        border-radius: 20px;
-        font-weight: 700;
-        font-size: 12px;
-        cursor: pointer;
-    }
-
-    .btn-guardar {
-        background-color: #22c55e;
-        color: #fff;
-        border: none;
-        padding: 8px 20px;
-        border-radius: 20px;
-        font-weight: 700;
-        font-size: 12px;
-        cursor: pointer;
-    }
-
-    /* ESTILO DE LA TABLA ESTILIZADA CON EL TEMA */
-    .tabla-contenedor {
-        background: rgba(255, 255, 255, 0.85);
-        border-radius: 20px;
-        padding: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        overflow-x: auto;
-        backdrop-filter: blur(5px);
-    }
-
-    .tabla-comedores {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0 10px;
-    }
-
-    .tabla-comedores th {
-        background-color: transparent;
-        color: #1e293b;
-        font-size: 12px;
-        font-weight: 800;
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 2px solid #cbd5e1;
-    }
-
-    .tabla-comedores tbody tr {
-        background: linear-gradient(135deg, #ffffff, #f1f5f9);
-        border-radius: 12px;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .tabla-comedores tbody tr:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .tabla-comedores td {
-        padding: 14px 15px;
-        font-size: 13px;
-        color: #334155;
-        vertical-align: middle;
-    }
-
-    .tabla-comedores td:first-child {
-        border-top-left-radius: 12px;
-        border-bottom-left-radius: 12px;
-        font-weight: 800;
-        color: #0f172a;
-    }
-
-    .tabla-comedores td:last-child {
-        border-top-right-radius: 12px;
-        border-bottom-right-radius: 12px;
-    }
-
-    /* BADGES / INSIGNIAS PERSONALIZADAS */
-    .badge-frecuencia {
-        padding: 6px 14px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 800;
-        display: inline-block;
-        text-align: center;
-    }
-
-    .badge-semanal {
-        background-color: #bbf7d0;
-        color: #166534;
-    }
-
-    .badge-quincenal {
-        background-color: #fef08a;
-        color: #854d0e;
-    }
-
-    .badge-mensual {
-        background-color: #e0e7ff;
-        color: #3730a3;
-    }
-
-    /* RESPONSIVO */
-    @media (max-width: 768px) {
-        .grid-stats, .grid-form {
-            grid-template-columns: 1fr;
-        }
-
-        .cabecera-comedores {
-            justify-content: center;
-            text-align: center;
-        }
-
-        .barra-herramientas {
-            flex-direction: column;
-        }
-    }
 </style>
 
-<main class="contenido-comedores">
-    <div class="contenedor-principal">
+<main class="contenido-comedores flex-1 py-10 px-5 bg-[linear-gradient(135deg,#f3e9ff,#fff0f7_35%,#eafcff_70%,#dffff9)] min-h-[85vh] flex flex-col items-center">
+    <div class="w-full max-w-[950px]">
 
         <!-- Encabezado Principal -->
-        <div class="cabecera-comedores">
-            <div class="pill-titulo">
+        <div class="flex justify-between items-center mb-[25px] flex-wrap gap-[15px] max-md:justify-center max-md:text-center">
+            <div class="bg-[#cbd5e1] text-[#1e293b] font-extrabold text-[13px] py-2.5 px-[25px] rounded-[30px] tracking-[0.5px]">
                 COMEDORES COMUNITARIOS REGISTRADOS
             </div>
-            <button class="btn-registro" onclick="toggleFormulario()">
+            <button class="bg-[#35c9ed] text-black font-extrabold text-[13px] py-2.5 px-[25px] rounded-[30px] border-none cursor-pointer transition-all duration-200 ease-in-out hover:bg-[#22b9df]" onclick="toggleFormulario()">
                 [ + REGISTRAR NUEVO COMEDOR ]
             </button>
         </div>
 
         <!-- Indicadores / Estadísticas rápidas -->
-        <div class="grid-stats">
-            <div class="card-stat">
-                <h6>Comedores Atendidos</h6>
-                <p id="totalComedoresCount">5</p>
+        <div class="grid grid-cols-3 gap-[15px] mb-[25px] max-md:grid-cols-1">
+            <div class="bg-white/70 rounded-[15px] p-[15px] text-center backdrop-blur-[5px] shadow-[0_4px_10px_rgba(0,0,0,0.03)]">
+                <h6 class="text-[11px] font-extrabold text-[#64748b] mb-[5px] uppercase">Comedores Atendidos</h6>
+                <p id="totalComedoresCount" class="text-[20px] font-extrabold text-[#0f172a] m-0">5</p>
             </div>
-            <div class="card-stat">
-                <h6>Total Beneficiarios</h6>
-                <p id="totalBeneficiariosCount">710</p>
+            <div class="bg-white/70 rounded-[15px] p-[15px] text-center backdrop-blur-[5px] shadow-[0_4px_10px_rgba(0,0,0,0.03)]">
+                <h6 class="text-[11px] font-extrabold text-[#64748b] mb-[5px] uppercase">Total Beneficiarios</h6>
+                <p id="totalBeneficiariosCount" class="text-[20px] font-extrabold text-[#0f172a] m-0">710</p>
             </div>
-            <div class="card-stat">
-                <h6>Atención Semanal</h6>
-                <p>60%</p>
+            <div class="bg-white/70 rounded-[15px] p-[15px] text-center backdrop-blur-[5px] shadow-[0_4px_10px_rgba(0,0,0,0.03)]">
+                <h6 class="text-[11px] font-extrabold text-[#64748b] mb-[5px] uppercase">Atención Semanal</h6>
+                <p class="text-[20px] font-extrabold text-[#0f172a] m-0">60%</p>
             </div>
         </div>
 
         <!-- Barra de Búsqueda y Filtro -->
-        <div class="barra-herramientas">
-            <input type="text" id="inputBuscar" class="input-busqueda" placeholder="Buscar por nombre o dirección..." onkeyup="filtrarTabla()">
-            <select id="selectFrecuencia" class="select-filtro" onchange="filtrarTabla()">
+        <div class="flex justify-between gap-[15px] mb-5 flex-wrap max-md:flex-col">
+            <input type="text" id="inputBuscar" class="flex-1 min-w-[250px] py-2.5 px-[18px] rounded-[25px] border border-[#cbd5e1] text-[13px] outline-none bg-white focus:border-[#35c9ed]" placeholder="Buscar por nombre o dirección..." onkeyup="filtrarTabla()">
+            <select id="selectFrecuencia" class="py-2.5 px-[18px] rounded-[25px] border border-[#cbd5e1] text-[13px] outline-none bg-white font-bold cursor-pointer" onchange="filtrarTabla()">
                 <option value="TODAS">Todas las Frecuencias</option>
                 <option value="SEMANAL">Semanal</option>
                 <option value="QUINCENAL">Quincenal</option>
@@ -342,28 +49,28 @@
         </div>
 
         <!-- FORMULARIO DE REGISTRO OCULTO POR DEFECTO -->
-        <div class="contenedor-formulario-oculto" id="seccionFormulario">
-            <div class="titulo-form">Alta de Comedor Comunitario</div>
+        <div class="hidden bg-white rounded-[20px] p-[25px] mb-[25px] shadow-[0_8px_20px_rgba(0,0,0,0.08)] border-2 border-[#35c9ed] animate-[fadeIn_0.3s_ease-in-out]" id="seccionFormulario">
+            <div class="text-[15px] font-extrabold text-[#1e293b] mb-[15px] uppercase border-b-2 border-[#e2e8f0] pb-2">Alta de Comedor Comunitario</div>
             <form id="formNuevoComedor" onsubmit="guardarComedor(event)">
-                <div class="grid-form">
-                    <div class="campo-grupo">
-                        <label for="nombreComedor">NOMBRE DEL COMEDOR</label>
-                        <input type="text" id="nombreComedor" placeholder="Ej. Comedor San Francisco" required>
+                <div class="grid grid-cols-2 gap-[15px] max-md:grid-cols-1">
+                    <div class="mb-2.5">
+                        <label for="nombreComedor" class="block text-[11px] font-extrabold text-[#334155] mb-[5px]">NOMBRE DEL COMEDOR</label>
+                        <input type="text" id="nombreComedor" class="w-full py-[9px] px-3 rounded-[10px] border border-[#cbd5e1] text-[13px] outline-none" placeholder="Ej. Comedor San Francisco" required>
                     </div>
 
-                    <div class="campo-grupo">
-                        <label for="direccionComedor">DIRECCIÓN</label>
-                        <input type="text" id="direccionComedor" placeholder="Ej. Av. Hidalgo #123, Col. Centro" required>
+                    <div class="mb-2.5">
+                        <label for="direccionComedor" class="block text-[11px] font-extrabold text-[#334155] mb-[5px]">DIRECCIÓN</label>
+                        <input type="text" id="direccionComedor" class="w-full py-[9px] px-3 rounded-[10px] border border-[#cbd5e1] text-[13px] outline-none" placeholder="Ej. Av. Hidalgo #123, Col. Centro" required>
                     </div>
 
-                    <div class="campo-grupo">
-                        <label for="beneficiarios">BENEFICIARIOS (DESGLOSE)</label>
-                        <input type="text" id="beneficiarios" placeholder="Ej. 90 Niños y 30 Adultos" required>
+                    <div class="mb-2.5">
+                        <label for="beneficiarios" class="block text-[11px] font-extrabold text-[#334155] mb-[5px]">BENEFICIARIOS (DESGLOSE)</label>
+                        <input type="text" id="beneficiarios" class="w-full py-[9px] px-3 rounded-[10px] border border-[#cbd5e1] text-[13px] outline-none" placeholder="Ej. 90 Niños y 30 Adultos" required>
                     </div>
 
-                    <div class="campo-grupo">
-                        <label for="frecuenciaEntrega">FRECUENCIA DE ENTREGA</label>
-                        <select id="frecuenciaEntrega" required>
+                    <div class="mb-2.5">
+                        <label for="frecuenciaEntrega" class="block text-[11px] font-extrabold text-[#334155] mb-[5px]">FRECUENCIA DE ENTREGA</label>
+                        <select id="frecuenciaEntrega" class="w-full py-[9px] px-3 rounded-[10px] border border-[#cbd5e1] text-[13px] outline-none" required>
                             <option value="SEMANAL">SEMANAL</option>
                             <option value="QUINCENAL">QUINCENAL</option>
                             <option value="MENSUAL">MENSUAL</option>
@@ -371,22 +78,31 @@
                     </div>
                 </div>
 
-                <div class="acciones-form">
-                    <button type="button" class="btn-cancelar" onclick="toggleFormulario()">Cancelar</button>
-                    <button type="submit" class="btn-guardar">Guardar Comedor</button>
+                <div class="flex justify-end gap-2.5 mt-[15px]">
+                    <button type="button" class="bg-[#94a3b8] text-white border-none py-2 px-5 rounded-[20px] font-bold text-[12px] cursor-pointer" onclick="toggleFormulario()">Cancelar</button>
+                    <button type="submit" class="bg-[#22c55e] text-white border-none py-2 px-5 rounded-[20px] font-bold text-[12px] cursor-pointer">Guardar Comedor</button>
                 </div>
             </form>
         </div>
 
         <!-- TABLA DE COMEDORES -->
-        <div class="tabla-contenedor">
-            <table class="tabla-comedores" id="tablaComedores">
+        <div class="bg-white/85 rounded-[20px] p-2.5 shadow-[0_4px_15px_rgba(0,0,0,0.05)] overflow-x-auto backdrop-blur-[5px]">
+            <table class="w-full border-separate border-spacing-y-2.5
+                [&_tbody_tr]:bg-[linear-gradient(135deg,#ffffff,#f1f5f9)] [&_tbody_tr]:rounded-[12px] [&_tbody_tr]:transition-[transform,box-shadow] [&_tbody_tr]:duration-200
+                [&_tbody_tr:hover]:-translate-y-0.5 [&_tbody_tr:hover]:shadow-[0_4px_10px_rgba(0,0,0,0.05)]
+                [&_td]:py-3.5 [&_td]:px-[15px] [&_td]:text-[13px] [&_td]:text-[#334155] [&_td]:align-middle
+                [&_td:first-child]:rounded-l-[12px] [&_td:first-child]:font-extrabold [&_td:first-child]:text-[#0f172a]
+                [&_td:last-child]:rounded-r-[12px]
+                [&_.badge-frecuencia]:py-1.5 [&_.badge-frecuencia]:px-3.5 [&_.badge-frecuencia]:rounded-[20px] [&_.badge-frecuencia]:text-[11px] [&_.badge-frecuencia]:font-extrabold [&_.badge-frecuencia]:inline-block [&_.badge-frecuencia]:text-center
+                [&_.badge-semanal]:bg-[#bbf7d0] [&_.badge-semanal]:text-[#166534]
+                [&_.badge-quincenal]:bg-[#fef08a] [&_.badge-quincenal]:text-[#854d0e]
+                [&_.badge-mensual]:bg-[#e0e7ff] [&_.badge-mensual]:text-[#3730a3]" id="tablaComedores">
                 <thead>
                     <tr>
-                        <th>COMEDOR</th>
-                        <th>DIRECCIÓN</th>
-                        <th>BENEFICIARIOS</th>
-                        <th>FRECUENCIA</th>
+                        <th class="bg-transparent text-[#1e293b] text-[12px] font-extrabold py-3 px-[15px] text-left border-b-2 border-[#cbd5e1]">COMEDOR</th>
+                        <th class="bg-transparent text-[#1e293b] text-[12px] font-extrabold py-3 px-[15px] text-left border-b-2 border-[#cbd5e1]">DIRECCIÓN</th>
+                        <th class="bg-transparent text-[#1e293b] text-[12px] font-extrabold py-3 px-[15px] text-left border-b-2 border-[#cbd5e1]">BENEFICIARIOS</th>
+                        <th class="bg-transparent text-[#1e293b] text-[12px] font-extrabold py-3 px-[15px] text-left border-b-2 border-[#cbd5e1]">FRECUENCIA</th>
                     </tr>
                 </thead>
                 <tbody id="tbodyComedores">

@@ -69,6 +69,7 @@
             color: #2563eb;
         }
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
@@ -81,7 +82,7 @@
 
             <div class="d-flex align-items-center gap-4">
                 <a class="nav-link-custom" href="{{ route('dashboard') }}">inicio</a>
-                <a class="nav-link-custom" href="#">inventario</a>
+                <a class="nav-link-custom" href="{{ route('inventario') }}">inventario</a>
                 <a class="nav-link-custom" href="{{ route('donantes') }}">donaciones</a>
                 <a class="nav-link-custom" href="{{ route('despachos') }}">despachos</a>
                 <a class="nav-link-custom" href="{{ route('comedores') }}">comedores</a>
