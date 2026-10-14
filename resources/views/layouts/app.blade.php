@@ -3,98 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Banco de Alimentos')</title>
+    <title>Banco de Alimentos</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-                    colors: {
-                        brand: '#0b6fd6',
-                        pill: '#c9d1da',
-                        cyanx: '#3dd6ff',
-                        greenx: '#7fdc5a',
-                    }
-                }
-            }
+    <style>
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f3e9ff, #fff0f7 35%, #eafcff 70%, #dffff9);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-    </script>
+
+        .navbar-custom {
+            background: transparent;
+            padding: 20px 40px 12px 40px;
+            border-bottom: 1.5px solid #a5b4fc;
+        }
+
+        .nav-link-custom {
+            color: #2563eb !important;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link-custom:hover {
+            opacity: 0.7;
+        }
+
+        .btn-menu-hamburguesa {
+            background: none;
+            border: none;
+            color: #2563eb;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 10px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-menu-custom {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu-custom .dropdown-item {
+            font-weight: 700;
+            color: #1e293b;
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .dropdown-menu-custom .dropdown-item:hover {
+            background-color: #f1f5f9;
+            color: #2563eb;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen flex flex-col font-sans antialiased text-slate-900
-             bg-gradient-to-br from-[#e6dcff] via-[#fbe6ef] via-40% to-[#cffcf8]">
+<body>
 
-    @php
-        $links = [
-            ['inicio',      'dashboard',          'dashboard'],
-            ['inventario',  'inventario.index',   'inventario.*'],
-            ['donaciones',  'donaciones.create',  'donaciones.*'],
-            ['despachos',   'despachos.index',    'despachos.*'],
-            ['comedores',   'comedores.index',    'comedores.*'],
-            ['reportes',    'reportes.index',     'reportes.*'],
-        ];
-    @endphp
+    <header class="navbar-custom">
+        <div class="d-flex justify-content-between align-items-center w-100">
+            
+            <a class="nav-link-custom fw-bold" href="{{ route('dashboard') }}" style="font-size: 16px;">
+                banco de alimentos
+            </a>
 
-    <!-- HEADER / NAV -->
-    <header class="sticky top-0 z-50 bg-white/30 backdrop-blur-md border-b-2 border-transparent
-                   [border-image:linear-gradient(to_right,#c9b8ff,#3b6fd9,#c9b8ff)_1]">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-8 py-4 flex items-center justify-between gap-4">
-            <nav class="flex items-center gap-5 sm:gap-10 overflow-x-auto text-sm font-semibold text-brand">
-                <a href="{{ route('dashboard') }}" class="whitespace-nowrap font-bold hover:opacity-70 transition">banco de alimentos</a>
-                @foreach ($links as [$texto, $ruta, $patron])
-                    <a href="{{ route($ruta) }}"
-                       class="whitespace-nowrap hover:opacity-70 transition {{ request()->routeIs($patron) ? 'underline underline-offset-8 decoration-2' : '' }}">
-                        {{ $texto }}
-                    </a>
-                @endforeach
-            </nav>
+            <div class="d-flex align-items-center gap-4">
+                <a class="nav-link-custom" href="{{ route('dashboard') }}">inicio</a>
+                <a class="nav-link-custom" href="{{ route('inventario') }}">inventario</a>
+                <a class="nav-link-custom" href="{{ route('donantes') }}">donaciones</a>
+                <a class="nav-link-custom" href="{{ route('despachos') }}">despachos</a>
+                <a class="nav-link-custom" href="{{ route('comedores') }}">comedores</a>
+                <a class="nav-link-custom" href="{{ route('reportes') }}">reportes</a>
 
-            <!-- Menú extra -->
-            <div class="relative shrink-0">
-                <button type="button" id="btnMenu" aria-label="Menú" aria-expanded="false"
-                        class="flex flex-col gap-[3px] w-7 items-end text-brand hover:opacity-70 transition">
-                    <span class="h-[3px] w-7 rounded bg-gradient-to-r from-brand to-white"></span>
-                    <span class="h-[3px] w-5 rounded bg-gradient-to-r from-brand to-white"></span>
-                    <span class="h-[3px] w-7 rounded bg-gradient-to-r from-brand to-white"></span>
-                </button>
-                <div id="menuExtra" class="hidden absolute right-0 mt-3 w-52 bg-white rounded-2xl shadow-xl py-2 text-sm font-semibold text-brand">
-                    <a href="{{ route('donantes.index') }}" class="block px-5 py-2 hover:bg-slate-100">donantes</a>
-                    <a href="{{ route('vencimientos.index') }}" class="block px-5 py-2 hover:bg-slate-100">próximos a vencer</a>
-                    <a href="{{ route('almacen.index') }}" class="block px-5 py-2 hover:bg-slate-100">almacén central</a>
-                    <a href="{{ route('perfil.edit') }}" class="block px-5 py-2 hover:bg-slate-100">mi perfil</a>
+                <div class="dropdown">
+                    <button class="btn-menu-hamburguesa" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        ≡
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="{{ route('almacen') }}">📦 Distribución Almacén</a></li>
+                        <li><a class="dropdown-item" href="{{ route('perfil') }}">⚙️ Configuración y Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#">🚪 Cerrar Sesión</a></li>
+                    </ul>
                 </div>
+
             </div>
         </div>
     </header>
 
-    <!-- CONTENIDO -->
-    <main class="flex-1 w-full px-4 sm:px-8 py-8 sm:py-12 flex flex-col items-center">
+    <main class="flex-grow-1 d-flex flex-column">
         @yield('content')
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-black text-white text-left py-4 px-4 text-sm font-bold">
-        [FOOTER] © 2026 Banco de Alimentos - Todos los derechos reservados
-    </footer>
-
-    <script>
-        (function () {
-            const btn = document.getElementById('btnMenu');
-            const menu = document.getElementById('menuExtra');
-            btn.addEventListener('click', e => {
-                e.stopPropagation();
-                const abierto = menu.classList.toggle('hidden') === false;
-                btn.setAttribute('aria-expanded', abierto);
-            });
-            document.addEventListener('click', () => menu.classList.add('hidden'));
-        })();
-    </script>
-    @stack('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

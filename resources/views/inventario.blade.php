@@ -1,67 +1,72 @@
 @extends('layouts.app')
 
-@section('title', 'Inventario | Banco de Alimentos')
-
 @section('content')
-@php
-    // Datos de ejemplo (sustituir por datos reales del controlador)
-    $productos = [
-        ['ARROZ',       'GRANOS',    '1,200 KG', 'DISPONIBLE', 'text-green-700'],
-        ['LECHE ENTERA','LACTEOS',   '400 LTS',  'STOCK BAJO', 'text-amber-600'],
-        ['ATUN EN LATA','ENLATADOS', '0 KG',     'AGOTADO',    'text-red-600'],
-    ];
-@endphp
+<main class="flex-1 w-full min-h-[calc(100vh-120px)] py-10 px-[75px] bg-[linear-gradient(135deg,#f3e9ff,#fff0f7_35%,#eafcff_70%,#dffff9)] flex flex-col items-center max-md:px-[15px]">
 
-<section class="w-full max-w-[1000px]">
-
-    <!-- Buscador -->
-    <div class="mb-10">
-        <label for="buscar" class="sr-only">Buscar alimentos</label>
-        <div class="flex items-center justify-center bg-[#ffde59] rounded-full px-6 py-3 max-w-[700px]">
-            <span aria-hidden="true" class="mr-2">🔍</span>
-            <input type="search" id="buscar" placeholder="buscar alimentos por nombre o codigo..." oninput="filtrar()"
-                   class="w-full bg-transparent text-center font-bold text-base outline-none placeholder-black/80">
+    <!-- Búsqueda -->
+    <div class="w-full max-w-[1100px] mb-[50px]">
+        <div class="w-full max-w-[520px] bg-[#ffdd5c] rounded-[30px] py-2.5 px-5 flex items-center justify-center gap-1.5 max-md:max-w-full">
+            <span>🔍</span>
+            <input type="text" id="inputBuscarInventario" class="flex-1 bg-transparent border-none outline-none text-[14px] font-bold text-black placeholder:text-black" placeholder="buscar alimentos por nombre o codigo..." onkeyup="filtrarInventario()">
         </div>
+
+        <a href="{{ route('caducidad') }}" class="inline-block mt-4 bg-[#3dd5fb] rounded-[30px] py-2.5 px-5 text-[14px] font-bold text-black hover:opacity-80 transition">
+            ⚠️ Ver alimentos próximos a vencer
+        </a>
     </div>
 
-    <!-- Tabla -->
-    <div class="overflow-x-auto flex justify-center">
-        <table class="border-2 border-black border-collapse text-center w-full max-w-[650px]">
+    <!-- Tabla de inventario -->
+    <div class="w-full max-w-[500px] overflow-x-auto">
+        <table class="w-full border-collapse border-2 border-black" id="tablaInventario">
             <thead>
-                <tr class="bg-pill text-white font-bold text-sm">
-                    <th class="border-2 border-black py-6 px-3">PRODUCTOS</th>
-                    <th class="border-2 border-black py-6 px-3">CATEGORIAS</th>
-                    <th class="border-2 border-black py-6 px-3">STOCK</th>
-                    <th class="border-2 border-black py-6 px-3">ESTADO</th>
+                <tr>
+                    <th class="border-2 border-black bg-[#c9d1db] text-white text-[15px] font-bold py-5 px-4 text-center">PRODUCTOS</th>
+                    <th class="border-2 border-black bg-[#c9d1db] text-white text-[15px] font-bold py-5 px-4 text-center">CATEGORIAS</th>
+                    <th class="border-2 border-black bg-[#c9d1db] text-white text-[15px] font-bold py-5 px-4 text-center">STOCK</th>
+                    <th class="border-2 border-black bg-[#c9d1db] text-white text-[15px] font-bold py-5 px-4 text-center">ESTADO</th>
                 </tr>
             </thead>
-            <tbody id="tbodyInventario" class="text-sm bg-white/40">
-                @foreach ($productos as [$nombre, $categoria, $stock, $estado, $color])
-                    <tr>
-                        <td class="border-2 border-black py-6 px-3">{{ $nombre }}</td>
-                        <td class="border-2 border-black py-6 px-3">{{ $categoria }}</td>
-                        <td class="border-2 border-black py-6 px-3">{{ $stock }}</td>
-                        <td class="border-2 border-black py-6 px-3 font-semibold {{ $color }}">{{ $estado }}</td>
-                    </tr>
-                @endforeach
+            <tbody id="tbodyInventario">
+                <tr>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">ARROZ</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">GRANOS</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">1,200 KG</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">DISPONIBLE</td>
+                </tr>
+                <tr>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">LECHE ENTERA</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">LACTEOS</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">400 LTS</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">STOCK BAJO</td>
+                </tr>
+                <tr>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">ATUN EN LATA</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">ENLATADOS</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">0 KG</td>
+                    <td class="border-2 border-black py-5 px-4 text-center text-[14px] text-black">AGOTADO</td>
+                </tr>
             </tbody>
         </table>
     </div>
-    <p id="sinResultados" class="hidden text-center text-sm font-medium py-6">No se encontraron productos.</p>
-</section>
 
-@push('scripts')
+</main>
+
 <script>
-    function filtrar() {
-        const q = document.getElementById('buscar').value.trim().toUpperCase();
-        let visibles = 0;
-        document.querySelectorAll('#tbodyInventario tr').forEach(tr => {
-            const ok = tr.textContent.toUpperCase().includes(q);
-            tr.style.display = ok ? '' : 'none';
-            if (ok) visibles++;
+    // Filtrar el inventario por nombre o categoría
+    function filtrarInventario() {
+        let texto = document.getElementById('inputBuscarInventario').value.toUpperCase();
+        let filas = document.querySelectorAll('#tbodyInventario tr');
+
+        filas.forEach(fila => {
+            let producto = fila.cells[0].textContent.toUpperCase();
+            let categoria = fila.cells[1].textContent.toUpperCase();
+
+            if (producto.includes(texto) || categoria.includes(texto)) {
+                fila.style.display = '';
+            } else {
+                fila.style.display = 'none';
+            }
         });
-        document.getElementById('sinResultados').classList.toggle('hidden', visibles > 0);
     }
 </script>
-@endpush
 @endsection

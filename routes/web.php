@@ -2,17 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Ruta Principal
 Route::view('/', 'dashboard')->name('dashboard');
+Route::view('/inventario', 'inventario')->name('inventario');
+Route::view('/donaciones/registro', 'registroDonaciones')->name('donaciones.registro');
+Route::view('/caducidad', 'caducidad')->name('caducidad');
 
-Route::view('/inventario', 'inventario')->name('inventario.index');
-Route::view('/inventario/vencimientos', 'vencimientos')->name('vencimientos.index');
-Route::view('/almacen', 'almacen')->name('almacen.index');
+// Rutas de Oswaldo Maldonado
+Route::view('/despachos', 'despachos')->name('despachos');
+Route::view('/donantes', 'donantes')->name('donantes');
+Route::view('/comedores', 'comedores')->name('comedores');
 
-Route::view('/donaciones/nueva', 'donaciones')->name('donaciones.create');
-Route::view('/donantes', 'donantes')->name('donantes.index');
-
-Route::view('/despachos', 'despachos')->name('despachos.index');
-Route::view('/comedores', 'comedores')->name('comedores.index');
-Route::view('/reportes', 'reportes')->name('reportes.index');
-
-Route::view('/perfil', 'perfil')->name('perfil.edit');
+// Rutas de Fausto (Simplificadas con el mismo estilo)
+Route::view('/reportes', 'reportes/reportes')->name('reportes');
+Route::view('/almacen', 'almacen/almacen')->name('almacen');
+Route::view('/perfil', 'perfil/perfil')->name('perfil');
