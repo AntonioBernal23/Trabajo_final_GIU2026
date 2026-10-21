@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'Home');
+Route::view('/', 'home');
 
-Route::view('/nosotros', 'Nosotros');
+Route::view('/preguntas-frecuentes', 'preguntas-frecuentes');
 
-Route::view('/servicios', 'Servicios');
+Route::view('/empresas-aliadas', 'empresas-aliadas');
 
-Route::view('/detalle/servicio/1', 'DetalleServicio1');
-Route::view('/detalle/servicio/2', 'DetalleServicio2');
-Route::view('/detalle/servicio/3', 'DetalleServicio3');
+Route::view('/calidad-y-seguridad', 'calidad-y-seguridad');
+
+Route::view('/nuestro-impacto', 'nuestro-impacto');
