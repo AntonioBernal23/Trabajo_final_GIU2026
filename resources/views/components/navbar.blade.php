@@ -30,7 +30,6 @@
                     <li><a href="{{ route('calidad') }}" class="block px-5 py-2.5 text-sm font-bold text-slate-800 no-underline hover:bg-slate-100 hover:text-blue-600">Calidad y Seguridad</a></li>
                     <li><a href="{{ route('aliados') }}" class="block px-5 py-2.5 text-sm font-bold text-slate-800 no-underline hover:bg-slate-100 hover:text-blue-600">Empresas Aliadas</a></li>
                     <li><a href="{{ route('faq') }}" class="block px-5 py-2.5 text-sm font-bold text-slate-800 no-underline hover:bg-slate-100 hover:text-blue-600">Preguntas Frecuentes</a></li>
-                    <li><a href="{{ route('faq') }}" class="block px-5 py-2.5 text-sm font-bold text-slate-800 no-underline hover:bg-slate-100 hover:text-blue-600">Preguntas Frecuentes</a></li>
                 </ul>
             </div>
         </div>

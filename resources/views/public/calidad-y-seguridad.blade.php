@@ -75,7 +75,7 @@
 
         <section class="text-center">
             <p class="text-sm text-gray-500 mb-4">¿Tienes dudas sobre nuestros procesos?</p>
-            <a href="{{ url('/contacto') }}"
+            <a href="{{ url('/solicitar-ayuda') }}"
                class="inline-block border border-gray-400 text-slate-700 hover:bg-gray-50 font-medium px-6 py-2 text-sm transition">
                 Contáctanos
             </a>

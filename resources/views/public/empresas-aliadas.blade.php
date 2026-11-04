@@ -66,7 +66,7 @@
             <p class="text-sm text-slate-300 mb-6 max-w-xl mx-auto">
                 Escríbenos y juntos diseñaremos la mejor forma de colaborar.
             </p>
-            <a href="{{ url('/contacto') }}"
+            <a href="{{ url('/voluntariado') }}"
                class="inline-block bg-white text-slate-800 hover:bg-gray-100 font-medium px-6 py-2 text-sm rounded transition">
                 Quiero ser aliado
             </a>
