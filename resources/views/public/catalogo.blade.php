@@ -18,25 +18,27 @@
     .filtros-container {
         display: flex;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
         margin-bottom: 50px;
         flex-wrap: wrap;
     }
-    .btn-filtro {
-        background-color: transparent;
+    .grupo-filtro {
         border: 2px solid #2563eb;
-        color: #2563eb;
-        padding: 10px 24px;
-        border-radius: 30px;
-        cursor: pointer;
-        font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
+        border-radius: 12px;
+        padding: 12px 20px;
+        min-width: 200px;
     }
-    .btn-filtro:hover, .btn-filtro.active {
-        background-color: #2563eb;
-        color: white;
-        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+    .grupo-filtro legend {
+        color: #2563eb;
+        font-weight: 700;
+        padding: 0 8px;
+        font-size: 1rem;
+    }
+    .grupo-filtro label {
+        display: block;
+        color: #1e293b;
+        margin: 6px 0;
+        cursor: pointer;
     }
     .productos-grid {
         display: grid;
@@ -90,17 +92,42 @@
 
 <div class="catalogo-container">
     <h2 class="catalogo-title">Banco de Alimentos - Catálogo de Donaciones</h2>
-    
+
     <div class="filtros-container">
-        <button id="btn-todos" class="btn-filtro active">Mostrar Todos</button>
-        <button id="btn-despensa" class="btn-filtro" data-categoria="despensa">Despensa Básica</button>
-        <button id="btn-perecederos" class="btn-filtro" data-categoria="perecederos">Perecederos</button>
-        <button id="btn-lacteos" class="btn-filtro" data-categoria="lacteos">Lácteos</button>
-        <button id="btn-enlatados" class="btn-filtro" data-categoria="enlatados">Enlatados</button>
+
+        <fieldset class="grupo-filtro">
+            <legend>Mostrar</legend>
+            <label><input type="checkbox" id="chk-todos" checked> Todos</label>
+        </fieldset>
+
+        <fieldset class="grupo-filtro">
+            <legend>Tipo de alimento</legend>
+            <label><input type="checkbox" class="filtro-check chk-tipo" value="tipo-despensa"> Despensa Básica</label>
+            <label><input type="checkbox" class="filtro-check chk-tipo" value="tipo-perecederos"> Perecederos</label>
+            <label><input type="checkbox" class="filtro-check chk-tipo" value="tipo-lacteos"> Lácteos</label>
+            <label><input type="checkbox" class="filtro-check chk-tipo" value="tipo-enlatados"> Enlatados</label>
+        </fieldset>
+
+        <fieldset class="grupo-filtro">
+            <legend>Presentación</legend>
+            <label><input type="checkbox" class="filtro-check chk-presentacion" value="presentacion-bolsa"> Bolsa / Saco</label>
+            <label><input type="checkbox" class="filtro-check chk-presentacion" value="presentacion-caja"> Caja / Canasta</label>
+            <label><input type="checkbox" class="filtro-check chk-presentacion" value="presentacion-envase"> Envase / Lata</label>
+            <label><input type="checkbox" class="filtro-check chk-presentacion" value="presentacion-pieza"> Pieza / Bloque</label>
+        </fieldset>
+
+        <fieldset class="grupo-filtro">
+            <legend>Aporte nutricional</legend>
+            <label><input type="checkbox" class="filtro-check chk-nutriente" value="nutriente-proteina"> Proteína</label>
+            <label><input type="checkbox" class="filtro-check chk-nutriente" value="nutriente-carbohidratos"> Carbohidratos</label>
+            <label><input type="checkbox" class="filtro-check chk-nutriente" value="nutriente-grasas"> Grasas</label>
+            <label><input type="checkbox" class="filtro-check chk-nutriente" value="nutriente-vitaminas"> Vitaminas</label>
+        </fieldset>
+
     </div>
 
     <div class="productos-grid" id="lista-productos">
-        <div class="producto-card articulo despensa">
+        <div class="producto-card articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos nutriente-proteina">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" alt="Arroz y Frijol" class="producto-img">
             </div>
@@ -108,7 +135,7 @@
             <p class="producto-desc">Granos básicos esenciales para asegurar la alimentación diaria de las familias.</p>
         </div>
 
-        <div class="producto-card articulo perecederos">
+        <div class="producto-card articulo tipo-perecederos presentacion-caja nutriente-vitaminas">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Vegetales" class="producto-img">
             </div>
@@ -116,7 +143,7 @@
             <p class="producto-desc">Verduras de calidad rescatadas de comercios, listas para su consumo nutritivo.</p>
         </div>
 
-        <div class="producto-card articulo lacteos">
+        <div class="producto-card articulo tipo-lacteos presentacion-envase nutriente-proteina nutriente-vitaminas">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80" alt="Leche" class="producto-img">
             </div>
@@ -124,7 +151,7 @@
             <p class="producto-desc">Leche fortificada envasada para aportar calcio y energía a los niños.</p>
         </div>
 
-        <div class="producto-card articulo enlatados">
+        <div class="producto-card articulo tipo-enlatados presentacion-envase nutriente-proteina">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Atún" class="producto-img">
             </div>
@@ -132,7 +159,7 @@
             <p class="producto-desc">Proteína enlatada de larga duración ideal para despensas comunitarias.</p>
         </div>
 
-        <div class="producto-card articulo despensa">
+        <div class="producto-card articulo tipo-despensa presentacion-envase nutriente-grasas">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80" alt="Aceite" class="producto-img">
             </div>
@@ -140,7 +167,7 @@
             <p class="producto-desc">Botella de aceite de cocina sellada para la preparación de alimentos nutritivos.</p>
         </div>
 
-        <div class="producto-card articulo perecederos">
+        <div class="producto-card articulo tipo-perecederos presentacion-caja nutriente-vitaminas nutriente-carbohidratos">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80" alt="Fruta" class="producto-img">
             </div>
@@ -148,7 +175,7 @@
             <p class="producto-desc">Frutas de temporada seleccionadas para aportar vitaminas esenciales a la comunidad.</p>
         </div>
 
-        <div class="producto-card articulo lacteos">
+        <div class="producto-card articulo tipo-lacteos presentacion-pieza nutriente-proteina nutriente-grasas">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=600&q=80" alt="Queso" class="producto-img">
             </div>
@@ -156,7 +183,7 @@
             <p class="producto-desc">Derivado lácteo rico en proteínas para complementar comidas comunitarias.</p>
         </div>
 
-        <div class="producto-card articulo enlatados">
+        <div class="producto-card articulo tipo-enlatados presentacion-envase nutriente-proteina nutriente-vitaminas">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=600&q=80" alt="Salsa" class="producto-img">
             </div>
@@ -164,7 +191,7 @@
             <p class="producto-desc">Conservas alimenticias envasadas listas para preparar sopas y guisados.</p>
         </div>
 
-        <div class="producto-card articulo despensa">
+        <div class="producto-card articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Harina" class="producto-img">
             </div>

@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+    // ---------- Mostrar / ocultar ----------
     function mostrarTodosLosArticulos() {
         let todosLosArticulos = document.getElementsByClassName("articulo");
         for (let i = 0; i < todosLosArticulos.length; i++) {
@@ -13,52 +15,81 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function filtrarPorCategoria(idBoton) {
-        ocultarTodosLosArticulos();
-        let boton = document.getElementById(idBoton);
-        let nombreCategoria = boton.getAttribute("data-categoria");
-        let articulosFiltrados = document.getElementsByClassName(nombreCategoria);
-        for (let i = 0; i < articulosFiltrados.length; i++) {
-            articulosFiltrados[i].classList.remove("oculto");
+    // ---------- Checkbox ----------
+    function desmarcarSubcategorias() {
+        let checks = document.getElementsByClassName("filtro-check");
+        for (let i = 0; i < checks.length; i++) {
+            checks[i].checked = false;
         }
     }
 
+    // Regresa un arreglo con los valores (nombres de clase) marcados de una categoría
+    function obtenerSeleccionados(claseCategoria) {
+        let checks = document.getElementsByClassName(claseCategoria);
+        let seleccionados = [];
+        for (let i = 0; i < checks.length; i++) {
+            if (checks[i].checked) {
+                seleccionados.push(checks[i].value);
+            }
+        }
+        return seleccionados;
+    }
+
+    // INCLUSIÓN: dentro de una misma categoría basta con cumplir UNA subcategoría marcada.
+    // Si no hay nada marcado en la categoría, no se filtra por ella.
+    function cumpleCategoria(articulo, seleccionados) {
+        if (seleccionados.length == 0) {
+            return true;
+        }
+        for (let i = 0; i < seleccionados.length; i++) {
+            if (articulo.classList.contains(seleccionados[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // ---------- Acciones ----------
     function accionTodos() {
-        activarBoton(btnTodos);
+        desmarcarSubcategorias();
+        chkTodos.checked = true;
         mostrarTodosLosArticulos();
     }
-    function accionDespensa() {
-        activarBoton(btnDespensa);
-        filtrarPorCategoria("btn-despensa");
-    }
-    function accionPerecederos() {
-        activarBoton(btnPerecederos);
-        filtrarPorCategoria("btn-perecederos");
-    }
-    function accionLacteos() {
-        activarBoton(btnLacteos);
-        filtrarPorCategoria("btn-lacteos");
-    }
-    function accionEnlatados() {
-        activarBoton(btnEnlatados);
-        filtrarPorCategoria("btn-enlatados");
+
+    function accionFiltrar() {
+        let tipos = obtenerSeleccionados("chk-tipo");
+        let presentaciones = obtenerSeleccionados("chk-presentacion");
+        let nutrientes = obtenerSeleccionados("chk-nutriente");
+
+        // Ninguna marcada: se muestran todos
+        if (tipos.length == 0 && presentaciones.length == 0 && nutrientes.length == 0) {
+            chkTodos.checked = true;
+            mostrarTodosLosArticulos();
+            return;
+        }
+
+        chkTodos.checked = false;
+        ocultarTodosLosArticulos();
+
+        let articulos = document.getElementsByClassName("articulo");
+        for (let i = 0; i < articulos.length; i++) {
+            let articulo = articulos[i];
+
+            // EXCLUSIÓN: debe cumplir TODAS las categorías que tengan algo marcado
+            if (cumpleCategoria(articulo, tipos) &&
+                cumpleCategoria(articulo, presentaciones) &&
+                cumpleCategoria(articulo, nutrientes)) {
+                articulo.classList.remove("oculto");
+            }
+        }
     }
 
-    function activarBoton(botonSeleccionado) {
-        let botones = document.querySelectorAll('.btn-filtro');
-        botones.forEach(b => b.classList.remove('active'));
-        botonSeleccionado.classList.add('active');
+    // ---------- Enlaces y eventos ----------
+    let chkTodos = document.getElementById("chk-todos");
+    if (chkTodos) chkTodos.addEventListener("click", accionTodos);
+
+    let checks = document.getElementsByClassName("filtro-check");
+    for (let i = 0; i < checks.length; i++) {
+        checks[i].addEventListener("click", accionFiltrar);
     }
-
-    let btnTodos = document.getElementById("btn-todos");
-    let btnDespensa = document.getElementById("btn-despensa");
-    let btnPerecederos = document.getElementById("btn-perecederos");
-    let btnLacteos = document.getElementById("btn-lacteos");
-    let btnEnlatados = document.getElementById("btn-enlatados");
-
-    if (btnTodos) btnTodos.addEventListener("click", accionTodos);
-    if (btnDespensa) btnDespensa.addEventListener("click", accionDespensa);
-    if (btnPerecederos) btnPerecederos.addEventListener("click", accionPerecederos);
-    if (btnLacteos) btnLacteos.addEventListener("click", accionLacteos);
-    if (btnEnlatados) btnEnlatados.addEventListener("click", accionEnlatados);
 });
