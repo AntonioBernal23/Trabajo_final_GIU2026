@@ -25,6 +25,7 @@
 
                 <ul id="menu-more-list"
                     class="hidden absolute right-0 mt-2 min-w-[220px] z-50 list-none m-0 py-2.5 bg-white rounded-2xl shadow-[0_8px_25px_rgba(0,0,0,0.12)]">
+                    <li><a href="{{ route('catalogo') }}" class="block px-5 py-2.5 text-sm font-bold text-slate-800 no-underline hover:bg-slate-100 hover:text-blue-600">Catálogo de Donaciones</a></li>
                     <li><a href="{{ route('voluntariado') }}" class="block px-5 py-2.5 text-sm font-bold text-slate-800 no-underline hover:bg-slate-100 hover:text-blue-600">Voluntariado</a></li>
                     <li><a href="{{ route('impacto') }}" class="block px-5 py-2.5 text-sm font-bold text-slate-800 no-underline hover:bg-slate-100 hover:text-blue-600">Nuestro Impacto</a></li>
                     <li><a href="{{ route('calidad') }}" class="block px-5 py-2.5 text-sm font-bold text-slate-800 no-underline hover:bg-slate-100 hover:text-blue-600">Calidad y Seguridad</a></li>

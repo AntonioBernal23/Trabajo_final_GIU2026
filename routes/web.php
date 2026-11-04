@@ -12,3 +12,4 @@ Route::view('/nuestro-impacto', 'public.nuestro-impacto')->name('impacto');
 Route::view('/calidad-y-seguridad', 'public.calidad-y-seguridad')->name('calidad');
 Route::view('/empresas-aliadas', 'public.empresas-aliadas')->name('aliados');
 Route::view('/preguntas-frecuentes', 'public.preguntas-frecuentes')->name('faq');
+Route::view('/catalogo', 'public.catalogo')->name('catalogo');
