@@ -88,10 +88,48 @@
     .oculto {
         display: none !important;
     }
+
+    .buscador-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    #buscador-productos {
+        width: 100%;
+        max-width: 500px;
+        padding: 14px 18px;
+        border: 2px solid #2563eb;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+    }
+
+    #buscador-productos:focus {
+        border-color: #1a365d;
+    }
+
+    /* Forzar el borde gris inicial */
+    .producto-card.border-gray-400 {
+        border: 1px solid #9ca3af !important;
+    }
+
+    /* Borde rojo cuando JavaScript agrega la clase */
+    .producto-card.border-red-500 {
+        border: 2px solid #ef4444 !important;
+    }
 </style>
 
 <div class="catalogo-container">
     <h2 class="catalogo-title">Banco de Alimentos - Catálogo de Donaciones</h2>
+
+    <div class="buscador-container">
+        <input
+            type="text"
+            id="buscador-productos"
+            placeholder="Buscar producto por nombre..."
+        >
+    </div>
 
     <div class="filtros-container">
 
@@ -127,7 +165,7 @@
     </div>
 
     <div class="productos-grid" id="lista-productos">
-        <div class="producto-card articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos nutriente-proteina">
+        <div class="producto-card producto-arroz-frijol articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos nutriente-proteina border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" alt="Arroz y Frijol" class="producto-img">
             </div>
@@ -135,7 +173,7 @@
             <p class="producto-desc">Granos básicos esenciales para asegurar la alimentación diaria de las familias.</p>
         </div>
 
-        <div class="producto-card articulo tipo-perecederos presentacion-caja nutriente-vitaminas">
+        <div class="producto-card producto-vegetales-frescos articulo tipo-perecederos presentacion-caja nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Vegetales" class="producto-img">
             </div>
@@ -143,7 +181,7 @@
             <p class="producto-desc">Verduras de calidad rescatadas de comercios, listas para su consumo nutritivo.</p>
         </div>
 
-        <div class="producto-card articulo tipo-lacteos presentacion-envase nutriente-proteina nutriente-vitaminas">
+        <div class="producto-card producto-leche-entera articulo tipo-lacteos presentacion-envase nutriente-proteina nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80" alt="Leche" class="producto-img">
             </div>
@@ -151,7 +189,7 @@
             <p class="producto-desc">Leche fortificada envasada para aportar calcio y energía a los niños.</p>
         </div>
 
-        <div class="producto-card articulo tipo-enlatados presentacion-envase nutriente-proteina">
+        <div class="producto-card producto-atun-lata articulo tipo-enlatados presentacion-envase nutriente-proteina border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Atún" class="producto-img">
             </div>
@@ -159,7 +197,7 @@
             <p class="producto-desc">Proteína enlatada de larga duración ideal para despensas comunitarias.</p>
         </div>
 
-        <div class="producto-card articulo tipo-despensa presentacion-envase nutriente-grasas">
+        <div class="producto-card producto-aceite-vegetal articulo tipo-despensa presentacion-envase nutriente-grasas border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80" alt="Aceite" class="producto-img">
             </div>
@@ -167,7 +205,7 @@
             <p class="producto-desc">Botella de aceite de cocina sellada para la preparación de alimentos nutritivos.</p>
         </div>
 
-        <div class="producto-card articulo tipo-perecederos presentacion-caja nutriente-vitaminas nutriente-carbohidratos">
+        <div class="producto-card producto-fruta-fresca articulo tipo-perecederos presentacion-caja nutriente-vitaminas nutriente-carbohidratos border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80" alt="Fruta" class="producto-img">
             </div>
@@ -175,7 +213,7 @@
             <p class="producto-desc">Frutas de temporada seleccionadas para aportar vitaminas esenciales a la comunidad.</p>
         </div>
 
-        <div class="producto-card articulo tipo-lacteos presentacion-pieza nutriente-proteina nutriente-grasas">
+        <div class="producto-card producto-queso-fresco articulo tipo-lacteos presentacion-pieza nutriente-proteina nutriente-grasas border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=600&q=80" alt="Queso" class="producto-img">
             </div>
@@ -183,7 +221,7 @@
             <p class="producto-desc">Derivado lácteo rico en proteínas para complementar comidas comunitarias.</p>
         </div>
 
-        <div class="producto-card articulo tipo-enlatados presentacion-envase nutriente-proteina nutriente-vitaminas">
+        <div class="producto-card producto-pure-tomate-lentejas articulo tipo-enlatados presentacion-envase nutriente-proteina nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=600&q=80" alt="Salsa" class="producto-img">
             </div>
@@ -191,7 +229,7 @@
             <p class="producto-desc">Conservas alimenticias envasadas listas para preparar sopas y guisados.</p>
         </div>
 
-        <div class="producto-card articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos">
+        <div class="producto-card producto-harina-maiz articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos border border-gray-400 rounded-md transition-all duration-300">
             <div class="producto-img-container">
                 <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Harina" class="producto-img">
             </div>
