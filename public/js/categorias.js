@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ---------- Buscador por nombre ----------
 
-    // Convertir el texto para compararlo con las clases
     function normalizarTexto(texto) {
         return texto
             .toLowerCase()
@@ -71,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .replace(/\s+/g, "-");
     }
 
-    // Comprobar si el producto coincide con la búsqueda
     function cumpleBusqueda(articulo, textoBusqueda) {
 
         if (textoBusqueda == "") {
@@ -160,50 +158,108 @@ document.addEventListener("DOMContentLoaded", function () {
         buscador.addEventListener("input", accionFiltrar);
     }
 
-    // ---------- Eventos del mouse ----------
+    // ---------- Nuevas transiciones y animaciones ----------
 
-// Función para resaltar un producto
-function resaltarProducto(productDiv) {
+    // Función cuando el mouse entra al producto
+    function accionMouseOver(productDiv) {
+        // Borde rojo al entrar el mouse
+        productDiv.classList.remove("border-gray-400");
+        productDiv.classList.add("border-red-500");
 
-    productDiv.style.transform = "scale(1.05)";
+        // Efecto 1: cambiar el fondo de la tarjeta
+        productDiv.classList.remove("bg-white");
+        productDiv.classList.add("bg-blue-50");
 
-    productDiv.classList.remove("border-gray-400");
-    productDiv.classList.add("border-red-500");
+        // Obtener la imagen del producto
+        let imagen = productDiv.getElementsByClassName("producto-img")[0];
 
-    productDiv.classList.add("shadow-lg");
+        // Efecto 2: aumentar y girar ligeramente la imagen
+        if (imagen) {
+            imagen.classList.add("scale-110");
+            imagen.classList.add("rotate-2");
+        }
 
-    productDiv.classList.remove("rounded-md");
-    productDiv.classList.add("rounded-xl");
-}
+        // Obtener el título del producto
+        let titulo = productDiv.getElementsByClassName("producto-titulo")[0];
 
-// Función para restaurar el producto
-function restaurarProducto(productDiv) {
+        // Efecto 3: cambiar el color del título
+        if (titulo) {
+            titulo.classList.remove("text-slate-800");
+            titulo.classList.add("text-blue-700");
+        }
+    }
 
-    productDiv.style.transform = "scale(1)";
+    // Función cuando el mouse sale del producto
+    function accionMouseOut(productDiv) {
 
-    productDiv.classList.remove("border-red-500");
-    productDiv.classList.add("border-gray-400");
+        // Restaurar el fondo
+        productDiv.classList.remove("bg-blue-50");
+        productDiv.classList.add("bg-white");
 
-    productDiv.classList.remove("shadow-lg");
+        // Restaurar borde gris al salir el mouse
+        productDiv.classList.remove("border-red-500");
+        productDiv.classList.add("border-gray-400");
 
-    productDiv.classList.remove("rounded-xl");
-    productDiv.classList.add("rounded-md");
-}
+        // Obtener la imagen
+        let imagen = productDiv.getElementsByClassName("producto-img")[0];
 
-// Obtener todas las tarjetas
-let productos = document.getElementsByClassName("producto-card");
+        // Restaurar tamaño y rotación
+        if (imagen) {
+            imagen.classList.remove("scale-110");
+            imagen.classList.remove("rotate-2");
+        }
 
-// Agregar eventos a cada tarjeta
-for (let i = 0; i < productos.length; i++) {
+        // Obtener el título
+        let titulo = productDiv.getElementsByClassName("producto-titulo")[0];
 
-    let productDiv = productos[i];
+        // Restaurar el color
+        if (titulo) {
+            titulo.classList.remove("text-blue-700");
+            titulo.classList.add("text-slate-800");
+        }
+    }
 
-    productDiv.addEventListener("mouseenter", function () {
-        resaltarProducto(productDiv);
-    });
+    // Obtener todas las tarjetas mediante su clase
+    let productos = document.getElementsByClassName("producto-card");
 
-    productDiv.addEventListener("mouseleave", function () {
-        restaurarProducto(productDiv);
-    });
-}
+    // Agregar eventos a cada tarjeta
+    for (let i = 0; i < productos.length; i++) {
+
+        let productDiv = productos[i];
+
+        productDiv.addEventListener("mouseover", function (evento) {
+
+            // Evitar repetir el efecto al pasar por elementos internos
+            if (!productDiv.contains(evento.relatedTarget)) {
+                accionMouseOver(productDiv);
+            }
+        });
+
+        productDiv.addEventListener("mouseout", function (evento) {
+
+            // Restaurar solamente cuando se sale de toda la tarjeta
+            if (!productDiv.contains(evento.relatedTarget)) {
+                accionMouseOut(productDiv);
+            }
+        });
+    }
+
+    // ---------- Efecto adicional en el buscador ----------
+
+    // Obtener el buscador mediante su ID
+    if (buscador) {
+
+        buscador.addEventListener("mouseover", function () {
+            buscador.classList.add("bg-blue-50");
+            buscador.classList.add("ring-2");
+            buscador.classList.add("ring-blue-400");
+        });
+
+        buscador.addEventListener("mouseout", function () {
+            buscador.classList.remove("bg-blue-50");
+            buscador.classList.remove("ring-2");
+            buscador.classList.remove("ring-blue-400");
+        });
+    }
+
 });

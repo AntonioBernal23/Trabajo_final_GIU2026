@@ -57,9 +57,6 @@
         text-align: center;
         transition: transform 0.3s ease;
     }
-    .producto-card:hover {
-        transform: translateY(-8px);
-    }
     .producto-img-container {
         width: 100%;
         height: 160px;
@@ -165,75 +162,75 @@
     </div>
 
     <div class="productos-grid" id="lista-productos">
-        <div class="producto-card producto-arroz-frijol articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos nutriente-proteina border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-arroz-frijol articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos nutriente-proteina border border-gray-400 rounded-md transition-all duration transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" alt="Arroz y Frijol" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" alt="Arroz y Frijol" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Kilo de Arroz y Frijol</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Kilo de Arroz y Frijol</h3>
             <p class="producto-desc">Granos básicos esenciales para asegurar la alimentación diaria de las familias.</p>
         </div>
 
-        <div class="producto-card producto-vegetales-frescos articulo tipo-perecederos presentacion-caja nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-vegetales-frescos articulo tipo-perecederos presentacion-caja nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300 transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Vegetales" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Vegetales" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Caja de Vegetales Frescos</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Caja de Vegetales Frescos</h3>
             <p class="producto-desc">Verduras de calidad rescatadas de comercios, listas para su consumo nutritivo.</p>
         </div>
 
-        <div class="producto-card producto-leche-entera articulo tipo-lacteos presentacion-envase nutriente-proteina nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-leche-entera articulo tipo-lacteos presentacion-envase nutriente-proteina nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300 transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80" alt="Leche" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=600&q=80" alt="Leche" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Litro de Leche Entera</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Litro de Leche Entera</h3>
             <p class="producto-desc">Leche fortificada envasada para aportar calcio y energía a los niños.</p>
         </div>
 
-        <div class="producto-card producto-atun-lata articulo tipo-enlatados presentacion-envase nutriente-proteina border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-atun-lata articulo tipo-enlatados presentacion-envase nutriente-proteina border border-gray-400 rounded-md transition-all duration-300 transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Atún" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Atún" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Pack de Atún en Lata</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Pack de Atún en Lata</h3>
             <p class="producto-desc">Proteína enlatada de larga duración ideal para despensas comunitarias.</p>
         </div>
 
-        <div class="producto-card producto-aceite-vegetal articulo tipo-despensa presentacion-envase nutriente-grasas border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-aceite-vegetal articulo tipo-despensa presentacion-envase nutriente-grasas border border-gray-400 rounded-md transition-all duration-300 transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80" alt="Aceite" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80" alt="Aceite" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Aceite Vegetal (1L)</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Aceite Vegetal (1L)</h3>
             <p class="producto-desc">Botella de aceite de cocina sellada para la preparación de alimentos nutritivos.</p>
         </div>
 
-        <div class="producto-card producto-fruta-fresca articulo tipo-perecederos presentacion-caja nutriente-vitaminas nutriente-carbohidratos border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-fruta-fresca articulo tipo-perecederos presentacion-caja nutriente-vitaminas nutriente-carbohidratos border border-gray-400 rounded-md transition-all duration-300 transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80" alt="Fruta" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=600&q=80" alt="Fruta" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Canasta de Fruta Fresca</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Canasta de Fruta Fresca</h3>
             <p class="producto-desc">Frutas de temporada seleccionadas para aportar vitaminas esenciales a la comunidad.</p>
         </div>
 
-        <div class="producto-card producto-queso-fresco articulo tipo-lacteos presentacion-pieza nutriente-proteina nutriente-grasas border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-queso-fresco articulo tipo-lacteos presentacion-pieza nutriente-proteina nutriente-grasas border border-gray-400 rounded-md transition-all duration-300 transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=600&q=80" alt="Queso" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?auto=format&fit=crop&w=600&q=80" alt="Queso" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Bloque de Queso Fresco</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Bloque de Queso Fresco</h3>
             <p class="producto-desc">Derivado lácteo rico en proteínas para complementar comidas comunitarias.</p>
         </div>
 
-        <div class="producto-card producto-pure-tomate-lentejas articulo tipo-enlatados presentacion-envase nutriente-proteina nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-pure-tomate-lentejas articulo tipo-enlatados presentacion-envase nutriente-proteina nutriente-vitaminas border border-gray-400 rounded-md transition-all duration-300 transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=600&q=80" alt="Salsa" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=600&q=80" alt="Salsa" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Puré de Tomate y Lentejas</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Puré de Tomate y Lentejas</h3>
             <p class="producto-desc">Conservas alimenticias envasadas listas para preparar sopas y guisados.</p>
         </div>
 
-        <div class="producto-card producto-harina-maiz articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos border border-gray-400 rounded-md transition-all duration-300">
+        <div class="producto-card producto-harina-maiz articulo tipo-despensa presentacion-bolsa nutriente-carbohidratos border border-gray-400 rounded-md transition-all duration-300 transition-colors">
             <div class="producto-img-container">
-                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Harina" class="producto-img">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Harina" class="producto-img ransition-transform duration-500">
             </div>
-            <h3 class="producto-titulo">Saco de Harina de Maíz</h3>
+            <h3 class="producto-titulo transition-colors duration-300">Saco de Harina de Maíz</h3>
             <p class="producto-desc">Harina nixtamalizada indispensable para la elaboración de tortillas diarias.</p>
         </div>
     </div>
